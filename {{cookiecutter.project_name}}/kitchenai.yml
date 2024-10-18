@@ -1,0 +1,14 @@
+version: 0.0.1
+app: {{cookiecutter.project_name}}.kitchen:router
+installed_apps:
+  - app1
+  - app2.kitchen
+  - app.kitchen
+plugins:
+  - app1
+  - app2
+  - app.kitchen:kitchen
+module_paths:
+  kitchen: app.kitchen:kitchen
+dependencies:
+  - chromadb

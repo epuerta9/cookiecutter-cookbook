@@ -1,5 +1,5 @@
 from ninja import Router, Schema
-from kitchenai_sdk.kitchenai import KitchenAIApp
+from kitchenai.contrib.kitchenai_sdk.kitchenai import KitchenAIApp
 import asyncio
 
 from typing import Optional
