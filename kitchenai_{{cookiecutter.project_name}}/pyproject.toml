@@ -3,12 +3,12 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "{{ cookiecutter.project_name }}"
+name = "kitchenai_{{ cookiecutter.project_name }}"
 version = "0.0.1"
 authors = [{ name = "{{ cookiecutter.author_name }}", email = "{{ cookiecutter.author_email }}" }]
 description = ''
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.11"
 license = "MIT"
 keywords = []
 classifiers = [
@@ -27,16 +27,21 @@ dependencies = [
   "llama-index", 
   "chromadb", 
   "llama-index-vector-stores-chroma", 
-  "boto3"
+  "boto3", 
+  "llama-index-llms-openai"
+
 ]
 
+[tool.hatch.envs.default.scripts]
+docker-build = "docker build -t kitchenai_{{ cookiecutter.project_name }} ."
+
 [project.urls]
-Documentation = "https://github.com/epuerta/cookbook#readme"
-Issues = "https://github.com/epuerta/cookbook/issues"
-Source = "https://github.com/epuerta/cookbook"
+Documentation = "https://github.com/{{ cookiecutter.author_name }}/kitchenai_{{ cookiecutter.project_name }}#readme"
+Issues = "https://github.com/{{ cookiecutter.author_name }}/kitchenai_{{ cookiecutter.project_name }}/issues"
+Source = "https://github.com/{{ cookiecutter.author_name }}/kitchenai_{{ cookiecutter.project_name }}"
 
 [tool.hatch.version]
-path = "src/cookbook/__about__.py"
+path = "kitchenai_{{ cookiecutter.project_name }}/__about__.py"
 
 [tool.falco.work]
 server = "python manage.py migrate && python manage.py runserver {address}"
@@ -47,19 +52,19 @@ extra-dependencies = [
   "mypy>=1.0.0",
 ]
 [tool.hatch.envs.types.scripts]
-check = "mypy --install-types --non-interactive {args:src/cookbook tests}"
+check = "mypy --install-types --non-interactive {args:kitchenai_{{ cookiecutter.project_name }} tests}"
 
 [tool.coverage.run]
-source_pkgs = ["cookbook", "tests"]
+source_pkgs = ["kitchenai_{{ cookiecutter.project_name }}", "tests"]
 branch = true
 parallel = true
 omit = [
-  "src/cookbook/__about__.py",
+  "kitchenai_{{ cookiecutter.project_name }}/__about__.py",
 ]
 
 [tool.coverage.paths]
-cookbook = ["src/cookbook", "*/cookbook/src/cookbook"]
-tests = ["tests", "*/cookbook/tests"]
+kitchenai_{{ cookiecutter.project_name }} = ["kitchenai_{{ cookiecutter.project_name }}", "*/kitchenai_{{ cookiecutter.project_name }}/kitchenai_{{ cookiecutter.project_name }}"]
+tests = ["tests", "*/kitchenai_{{ cookiecutter.project_name }}/tests"]
 
 [tool.coverage.report]
 exclude_lines = [
@@ -91,3 +96,6 @@ dependencies = [
     "kitchenai"
 ]
 lock-filename = "requirements-dev.txt"
+
+[tool.hatch.envs.dev.scripts]
+compile = "hatch-pip-compile --output-file requirements-dev.txt"
