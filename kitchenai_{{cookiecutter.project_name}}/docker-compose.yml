@@ -4,9 +4,6 @@ services:
     image: kitchenai_{{cookiecutter.project_name}}
     ports:
     - "8000:8000"
-    volumes:
-      - $HOME/.aws/credentials:/root/.aws/credentials:ro
-      - .:/opt/
     network_mode: host
     environment:
       - OPENAI_API_KEY

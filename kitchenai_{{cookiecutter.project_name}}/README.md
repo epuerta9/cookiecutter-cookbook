@@ -17,6 +17,8 @@
 - just
 
 
+
+
 ## Running 
 - OPENAI api key `export OPENAI_API_KEY=<yourapikey>`
 

@@ -1,4 +1,4 @@
-from ninja import Router, Schema,File
+from ninja import Schema,File
 from kitchenai.contrib.kitchenai_sdk.kitchenai import KitchenAIApp
 from ninja.files import UploadedFile
 
@@ -9,12 +9,10 @@ from llama_index.llms.openai import OpenAI
 import os 
 import tempfile
 import chromadb
-from typing import Optional
 from llama_index.llms.openai import OpenAI
 
 
 
-router = Router()
 
 # create client and a new collection
 chroma_client = chromadb.EphemeralClient()
@@ -25,7 +23,7 @@ llm = OpenAI(model="gpt-4")
 class Query(Schema):
     query: str
 
-kitchen = KitchenAIApp(router=router)
+kitchen = KitchenAIApp()
 
 
 @kitchen.storage("storage")
