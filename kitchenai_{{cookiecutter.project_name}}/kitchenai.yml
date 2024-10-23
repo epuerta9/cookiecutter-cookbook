@@ -1,6 +1,6 @@
 version: 0.0.1
-project_name: "{{ cookiecutter.project.lower()|replace(' ', '-')|replace('_', '-')|replace('.', '-')|trim() }}"
-app: {{cookiecutter.project_name}}.kitchen:kitchen
+project_name: "kitchenai-{{ cookiecutter.project.lower()|replace(' ', '-')|replace('_', '-')|replace('.', '-')|trim() }}"
+app: kitchenai_{{cookiecutter.project_name}}.kitchen:kitchen
 description: |
   this is my entire description of my current running cookbook
 installed_apps:
